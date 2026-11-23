@@ -1,0 +1,5 @@
+AvoGo 2.2 - Recetario ampliado
+
+Abre index.html en Chrome o Edge. Mantén la carpeta images junto al archivo.
+Incluye 40 recetas nuevas (sin duplicar las galletas repetidas), fotos generadas con IA y recetas organizadas por categorías.
+Las imágenes son ilustrativas. Revisa ingredientes, alérgenos y cocción segura.
