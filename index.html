@@ -336,7 +336,11 @@ async function reviewRecipe(id,status){
  if(error){console.error(error);toast('No se pudo actualizar la receta.');return}
  toast(status==='approved'?'¡Receta aprobada!':'Receta rechazada.');await loadPendingRecipes();if(status==='approved')await loadCommunityRecipes();
 }
-document.getElementById('adminLoginForm').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.currentTarget);const {error}=await sb.auth.signInWithPassword({email:f.get('email'),password:f.get('password')});if(error){toast('No se pudo iniciar sesión. Revisa tus datos.');return}e.currentTarget.reset();await checkAdminSession();});
+document.getElementById('adminLoginForm').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.currentTarget);const {error}=await sb.auth.signInWithPassword({email:f.get('email'),password:f.get('password')});if(error){
+  console.error("ERROR DE LOGIN:", error);
+  toast("Error: " + error.message);
+  return;
+}e.currentTarget.reset();await checkAdminSession();});
 document.getElementById('adminLogout').addEventListener('click',async()=>{await sb.auth.signOut();await checkAdminSession();showView('home');toast('Sesión cerrada.');});
 async function loadCommunityRecipes(){
  const {data,error}=await sb.from('recipes').select('*').eq('status','approved').order('submitted_at',{ascending:false});if(error){console.error(error);return}
